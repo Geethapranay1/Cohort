@@ -42,39 +42,46 @@ app.post("/signup", async function(req, res) {
         msg : "user created successfully"
     })
 })
-// app.post("/signin", function(req, res) {
-//     const username = req.body.username;
-//     const password = req.body.password;
+app.post("/signin", async function(req, res) {
+    const username = req.body.username;
+    const password = req.body.password;
     
-//     if(!userExists(username, password)) {
-//         return res.status(403).json({
-//             msg : "user doesn't exist in our mango db",
-//         });
-//     }
+    const checkingUser = await User.findOne({email : username});
+    if (checkingUser) {
+        var token = jwt.sign({email : username}, jwtPassword);
+        return res.json({
+            token,
+        });
+    }else {
+        return res.status(404).send("user doesn't exist please first sign up");
+    }
 
-//     var token = jwt.sign({username : username}, jwtPassword);
-//     return res.json({
-//         token,
-//     });
-// });
+   
+});
 
-// app.get("/users", function(req, res) {
-//     const token = req.headers.authorization;
-//     try {
-//         const decoded = jwt.verify(token, jwtPassword);
-//         const username = decoded.username;
-//         const otherUsers = ALL_USERS.filter((user) => user.username !== username);
-
-//         res.status(200).json({
-//             otherUsers
-//         })
-
-//     }catch (error) {
-//         return res.status(403).json({
-//             msg: "Invalid token",
-//         });
-//     }
-// })
+app.get("/users", async function(req, res) {
+    const token = req.headers.authorization;
+    try {
+		const decoded = jwt.verify(token, jwtPassword);
+		const username = decoded.email;
+		// return a list of users other than this username from the database
+		let people = [];
+		const data = await User.find({ email: username });
+		if (data) {
+			const allUsers = await User.find({});
+			for (let i = 0; i < allUsers.length; i++) {
+				if (allUsers[i].email !== data[0].email) {
+					people.push(allUsers[i]);
+				}
+			}
+			res.status(200).json(people);
+		}
+	} catch (err) {
+		return res.status(403).json({
+			msg: "Invalid token",
+		});
+	}
+})
 
 app.listen(port, function() {
     console.log(`server is running on http://localhost:${port}`);
