@@ -1,0 +1,25 @@
+/* h1{
+    color: blueviolet;
+    text-decoration: underline;
+    background-color: yellowgreen;
+}
+
+body{
+    background-color: antiquewhite;
+
+}
+
+button{
+    background-color: aquamarine;
+
+
+} */
+
+#box{
+    height: 100px;
+    width: 100px;
+    background-color: aquamarine;
+    color: white;
+    border : 1px solid black;
+    
+}
