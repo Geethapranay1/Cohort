@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+.container{
+    height: 100vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.number{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+#btn{
+    margin: 10px;
+    padding: 10px;
+    background-color: aquamarine;
+    border: none;
+    border-radius: 10px;
+}
+
+#finalAnswer{
+    font-size: 5rem;
+    position: absolute;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-bottom: 50%;
+}
