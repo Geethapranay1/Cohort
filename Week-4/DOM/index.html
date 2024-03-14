@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+        <!-- //onclick, oninput -->
     <div class="container">
-        <input  type="text" id = "firstNumber" class = "number" placeholder="first number">
-        <input  type="text" id = "secondNumber" class = "number" placeholder="second number">
-        <button onclick = "sumCalculate()" id = "btn">Calculate sum</button><br><br>
+        <input  oninput="debounceSum()" type="text" id = "firstNumber" class = "number" placeholder="first number">
+        <input  oninput="debounceSum()" type="text" id = "secondNumber" class = "number" placeholder="second number">
+        <!-- <button onclick = "sumCalculate()" id = "btn">Calculate sum</button><br><br> -->
     </div>
     <div id="finalAnswer">
         
