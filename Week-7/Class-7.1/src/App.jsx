@@ -37,11 +37,13 @@ function App() {
   //     </BrowserRouter>
   //   </div>
   // )
+
   //wrap anyone that wants to use the teleporter in the context provider
+
   return (
     <div>
-      <CountContext.Provider value={count}>
-        <Count setCount={setCount}/>
+      <CountContext.Provider value={{count, setCount}}>
+        <Count />
       </CountContext.Provider>
     </div>
   )
@@ -64,17 +66,17 @@ function App() {
 // }
 
 
-function Count({setCount}) {
+function Count() {
   return (
     <div>
       <CountRender />
-      <Buttons setCount={setCount}/>
+      <Buttons />
     </div>
   )
 }
 
 function CountRender() { 
-  const count = useContext(CountContext);
+  const { count } = useContext(CountContext);
   return (
     <div>
       {count}
@@ -83,8 +85,8 @@ function CountRender() {
 
 }
 
-function Buttons({setCount}) {
-  const count = useContext(CountContext);
+function Buttons() {
+  const { count, setCount } = useContext(CountContext);
     return(
       <div>
         <button onClick={() => {
@@ -108,3 +110,21 @@ export default App
 // useNavigate() // this will not reload the page and go to the landing page
 // useNavigate("/dashboard") // this will not reload the page and go to the dashboard page
 // https://education.github.com/pack/offers 
+
+//useNavigate() hook is used to navigate to the different routes in the react application
+
+
+//the syntax of useContext is useContext(context) where context is the context object that is created using createContext() method
+//the useContext hook is used to consume the context object that is created using createContext() method
+//example of useContext hook is given below
+// const count = useContext(CountContext);
+//the above code will consume the count value from the context object CountContext
+//the useContext hook is used to consume the context object value in the functional component
+//export the context object using createContext() method
+//create a context object using createContext() method
+//create a provider component using the context object
+//consume the context object value using useContext hook in the functional component
+//the useContext hook is used to consume the context object value in the functional component
+//the syntax of <CountContext.Provider> is <CountContext.Provider value={count}>
+//the value attribute of the <CountContext.Provider> component is used to pass the value to the context object
+//wrap the component that wants to use the context object in the provider component
